@@ -1,0 +1,6 @@
+[submodule "raw/norare-data"]
+	path = raw/norare-data
+	url = https://github.com/concepticon/norare-data
+[submodule "raw/concepticon-data"]
+	path = raw/concepticon-data
+	url = https://github.com/concepticon/concepticon-data
