@@ -1,18 +1,18 @@
-# Using the NoRaRe CLDF data
+# Using NoRaRe data from the CLDF dataset
 
 [CLDF](https://cldf.clld.org) is a package format for linguistic data, bundling a set of tables as CSV files
 with JSON metadata, describing - among other things - relations between these tables.
 
 First, familiarize yourself with the data model by looking through [cldf/README.md](../cldf/README.md).
-In the following we will explore the data while reproducing usage of the data in publications about
-NoRaRe
+In the following, we will explore the data while reproducing usage of the data in publications about
+NoRaRe.
 
 
 ## Reading the CSV tables
 
 Let's start with recreating the wordcloud in the 
 [press release](https://www.eva.mpg.de/press/news/article/norare-a-multilingual-database-of-word-and-concept-properties/)
-accompanying the NoRaRe paper. This wordcloud depicts the tags used to describe [NoRaRe variables](../cldf/README.md#table-variablescsv)
+accompanying the [NoRaRe paper](https://doi.org/10.3758/s13428-021-01650-1). This wordcloud depicts the tags used to describe [NoRaRe variables](../cldf/README.md#table-variablescsv)
 and their frequency.
 
 The CSV files in a CLDF dataset can readily be inspected using the tools available in the
@@ -52,7 +52,7 @@ img.show()
 
 The NoRaRe dataset - like most other CLDF datasets - contains multiple, related tables. While it is possible
 to join data from these tables by reading the CSV and assembling related rows using any programming platform
-(like Python, R or just the Unix Shell), we can also use a platform custom-built for this kind of data.
+(like Python, R, or just the Unix Shell), we can also use a platform custom-built for this kind of data.
 CLDF contains all the
 information necessary to load a dataset into a relational database - and the [pycldf](https://github.com/cldf/pycldf)
 package can turn any CLDF dataset into a [SQLite database](https://pycldf.readthedocs.io/en/latest/db.html), which can be queried
@@ -62,7 +62,7 @@ $ cldf createdb cldf/Wordlist-metadata.json norare.sqlite
 INFO    <cldf:v1.0:Wordlist at cldf> loaded in norare.sqlite
 ```
 
-Now we can easily retrieve data, e.g. listing word frequencies as reported in NoRaRe datasets for word expressing
+Now we can easily retrieve data, e.g. listing word frequencies as reported in NoRaRe datasets for words expressing
 the same concept (according to [Concepticon](https://concepticon.clld.org)) as was done
 for [figure 3](https://link.springer.com/article/10.3758/s13428-021-01650-1/figures/3)
 of the paper
@@ -134,7 +134,7 @@ are available in NoRaRe, we might want to compute correlations, as was done in t
 [Comparing NoRaRe data sets: Calculation of correlations and creation of plots in R](https://calc.hypotheses.org/3109).
 
 Again, an SQL statement can be used to assemble the data.
-To retrieve the data for variable `Scott-2019-Ratings-ENGLISH_AROUSAL_MEAN` and variable `Moors-2013-Ratings-DUTCH_AROUSAL_MEAN`
+To retrieve the data for the variable `Scott-2019-Ratings-ENGLISH_AROUSAL_MEAN` and variable `Moors-2013-Ratings-DUTCH_AROUSAL_MEAN`
 we run
 ```sql
 SELECT
@@ -154,7 +154,7 @@ GROUP BY cid
 HAVING x > 0 AND y > 0
 ```
 
-Using the [pandas](https://pypi.org/project/pandas/) and [seaborn](https://pypi.org/project/seaborn/) packages for Pyton,
+Using the [pandas](https://pypi.org/project/pandas/) and [seaborn](https://pypi.org/project/seaborn/) packages for Python,
 we can plot the correlation using code like
 ```python
 import sqlite3
@@ -174,9 +174,9 @@ plot = sns.lmplot(
 
 ![correlation](corr.png)
 
-Note that we had to use the `AVG` aggregate function in the above query to accomodate the case of multiple values for
+Note that we had to use the `AVG` aggregate function in the above query to accommodate the case of multiple values for
 the same variable being assigned to words which are mapped to the same concept.
-While this not the case for the majority of variables, it still happens for 240 variables, as can be inspected running
+While this is not the case for the majority of variables, it still happens for 240 variables, as can be inspected running
 the following query:
 ```sql
 SELECT
