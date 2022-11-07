@@ -1,0 +1,24 @@
+{
+    "creators": [
+        {
+            "name": "Annika Tjuka"
+        },
+        {
+            "name": "Robert Forkel"
+        },
+        {
+            "name": "Johann-Mattis List"
+        }
+    ],
+    "title": "Database of Cross-Linguistic Norms, Ratings, and Relations for Words and Concepts as CLDF dataset",
+    "access_right": "open",
+    "keywords": [
+        "cldf:Wordlist",
+        "linguistics"
+    ],
+    "upload_type": "dataset",
+    "description": "<p>Cite the source of the dataset as:</p>\n\n<blockquote>\n<p>Tjuka, Annika, Robert Forkel, and Johann-Mattis List. 2022. Linking Norms, Ratings, and Relations of Words and Concepts Across Multiple Language Varieties. Behavior Research Methods 54. 864\u2013884. DOI: 10.3758/s13428-021-01650-1</p>\n</blockquote>",
+    "license": {
+        "id": "CC-BY-4.0"
+    }
+}

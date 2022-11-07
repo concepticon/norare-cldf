@@ -1,0 +1,492 @@
+{
+    "@context": [
+        "http://www.w3.org/ns/csvw",
+        {
+            "@language": "en"
+        }
+    ],
+    "dc:bibliographicCitation": "Tjuka, Annika, Robert Forkel, and Johann-Mattis List. 2022. Linking Norms, Ratings, and Relations of Words and Concepts Across Multiple Language Varieties. Behavior Research Methods 54. 864\u2013884. DOI: 10.3758/s13428-021-01650-1",
+    "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#Wordlist",
+    "dc:identifier": "https://norare.clld.org",
+    "dc:license": "https://creativecommons.org/licenses/by/4.0/",
+    "dc:source": "sources.bib",
+    "dc:title": "Database of Cross-Linguistic Norms, Ratings, and Relations for Words and Concepts",
+    "dcat:accessURL": "https://github.com/concepticon/norare-cldf",
+    "prov:wasDerivedFrom": [
+        {
+            "rdf:about": "https://github.com/concepticon/norare-cldf",
+            "rdf:type": "prov:Entity",
+            "dc:created": "b8eece1",
+            "dc:title": "Repository"
+        },
+        {
+            "rdf:about": "https://github.com/glottolog/glottolog",
+            "rdf:type": "prov:Entity",
+            "dc:created": "v4.6",
+            "dc:title": "Glottolog"
+        },
+        {
+            "rdf:about": "https://github.com/concepticon/concepticon-data",
+            "rdf:type": "prov:Entity",
+            "dc:created": "v3.0.0",
+            "dc:title": "Repository"
+        },
+        {
+            "rdf:about": "https://github.com/concepticon/norare-data",
+            "rdf:type": "prov:Entity",
+            "dc:created": "v1.0",
+            "dc:title": "Repository"
+        }
+    ],
+    "prov:wasGeneratedBy": [
+        {
+            "dc:title": "python",
+            "dc:description": "3.8.10"
+        },
+        {
+            "dc:title": "python-packages",
+            "dc:relation": "requirements.txt"
+        }
+    ],
+    "rdf:ID": "norare",
+    "rdf:type": "http://www.w3.org/ns/dcat#Distribution",
+    "tables": [
+        {
+            "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#FormTable",
+            "dc:description": "Words in individual languages to which NoRaRe variables assign norms, ratings or relations.",
+            "dc:extent": 126446,
+            "tableSchema": {
+                "columns": [
+                    {
+                        "datatype": {
+                            "base": "string",
+                            "format": "[a-zA-Z0-9_\\-]+"
+                        },
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#id",
+                        "required": true,
+                        "name": "ID"
+                    },
+                    {
+                        "dc:description": "A reference to a language (or variety) the form belongs to",
+                        "dc:extent": "singlevalued",
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#languageReference",
+                        "required": true,
+                        "name": "Language_ID"
+                    },
+                    {
+                        "dc:description": "A reference to the meaning denoted by the form",
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#parameterReference",
+                        "required": true,
+                        "name": "Parameter_ID"
+                    },
+                    {
+                        "dc:description": "Some datasets provide data without specifying the associated word forms in the studied languages. In these cases, the 'Form' value is set to '<NA>'.",
+                        "dc:extent": "singlevalued",
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#form",
+                        "required": true,
+                        "name": "Form"
+                    },
+                    {
+                        "dc:extent": "multivalued",
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#segments",
+                        "required": false,
+                        "separator": " ",
+                        "name": "Segments"
+                    },
+                    {
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#comment",
+                        "required": false,
+                        "name": "Comment"
+                    },
+                    {
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#source",
+                        "required": false,
+                        "separator": ";",
+                        "name": "Source"
+                    },
+                    {
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#contributionReference",
+                        "name": "Dataset_ID"
+                    }
+                ],
+                "foreignKeys": [
+                    {
+                        "columnReference": [
+                            "Parameter_ID"
+                        ],
+                        "reference": {
+                            "resource": "concepticon.csv",
+                            "columnReference": [
+                                "ID"
+                            ]
+                        }
+                    },
+                    {
+                        "columnReference": [
+                            "Language_ID"
+                        ],
+                        "reference": {
+                            "resource": "languages.csv",
+                            "columnReference": [
+                                "ID"
+                            ]
+                        }
+                    },
+                    {
+                        "columnReference": [
+                            "Dataset_ID"
+                        ],
+                        "reference": {
+                            "resource": "datasets.csv",
+                            "columnReference": [
+                                "ID"
+                            ]
+                        }
+                    }
+                ],
+                "primaryKey": [
+                    "ID"
+                ]
+            },
+            "url": "glosses.csv"
+        },
+        {
+            "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#ParameterTable",
+            "dc:description": "This table lists the Concepticon conceptsets to which the meaning of words, studied in NoRaRe datasets, are linked, thus providing the backbone for cross-linguistic analysis of NoRaRe data.",
+            "dc:extent": 3564,
+            "tableSchema": {
+                "columns": [
+                    {
+                        "datatype": {
+                            "base": "string",
+                            "format": "[a-zA-Z0-9_\\-]+"
+                        },
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#id",
+                        "required": true,
+                        "name": "ID"
+                    },
+                    {
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#name",
+                        "required": false,
+                        "name": "Name"
+                    },
+                    {
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#description",
+                        "required": false,
+                        "name": "Description"
+                    },
+                    {
+                        "datatype": "json",
+                        "name": "glosses"
+                    },
+                    {
+                        "datatype": "nonNegativeInteger",
+                        "name": "count_datasets"
+                    },
+                    {
+                        "datatype": "nonNegativeInteger",
+                        "name": "count_variables"
+                    }
+                ],
+                "primaryKey": [
+                    "ID"
+                ]
+            },
+            "url": "concepticon.csv"
+        },
+        {
+            "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#ContributionTable",
+            "dc:extent": 113,
+            "tableSchema": {
+                "columns": [
+                    {
+                        "datatype": {
+                            "base": "string",
+                            "format": "[a-zA-Z0-9_\\-]+"
+                        },
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#id",
+                        "required": true,
+                        "name": "ID"
+                    },
+                    {
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#name",
+                        "required": false,
+                        "name": "Name"
+                    },
+                    {
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#description",
+                        "required": false,
+                        "name": "Description"
+                    },
+                    {
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#contributor",
+                        "required": false,
+                        "separator": " and ",
+                        "name": "Contributor"
+                    },
+                    {
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#citation",
+                        "required": false,
+                        "name": "Citation"
+                    },
+                    {
+                        "datatype": "integer",
+                        "name": "Year"
+                    },
+                    {
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#source",
+                        "separator": ";",
+                        "name": "Source"
+                    },
+                    {
+                        "datatype": "anyURI",
+                        "name": "URL"
+                    },
+                    {
+                        "name": "Alias"
+                    }
+                ],
+                "primaryKey": [
+                    "ID"
+                ]
+            },
+            "url": "datasets.csv"
+        },
+        {
+            "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#LanguageTable",
+            "dc:extent": 39,
+            "tableSchema": {
+                "columns": [
+                    {
+                        "datatype": {
+                            "base": "string",
+                            "format": "[a-zA-Z0-9_\\-]+"
+                        },
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#id",
+                        "required": true,
+                        "name": "ID"
+                    },
+                    {
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#name",
+                        "required": false,
+                        "name": "Name"
+                    },
+                    {
+                        "datatype": "string",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#macroarea",
+                        "required": false,
+                        "name": "Macroarea"
+                    },
+                    {
+                        "datatype": {
+                            "base": "decimal",
+                            "minimum": "-90",
+                            "maximum": "90"
+                        },
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#latitude",
+                        "required": false,
+                        "name": "Latitude"
+                    },
+                    {
+                        "datatype": {
+                            "base": "decimal",
+                            "minimum": "-180",
+                            "maximum": "180"
+                        },
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#longitude",
+                        "required": false,
+                        "name": "Longitude"
+                    },
+                    {
+                        "datatype": {
+                            "base": "string",
+                            "format": "[a-z0-9]{4}[1-9][0-9]{3}"
+                        },
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#glottocode",
+                        "required": false,
+                        "valueUrl": "http://glottolog.org/resource/languoid/id/{Glottocode}",
+                        "name": "Glottocode"
+                    },
+                    {
+                        "datatype": {
+                            "base": "string",
+                            "format": "[a-z]{3}"
+                        },
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#iso639P3code",
+                        "required": false,
+                        "name": "ISO639P3code"
+                    }
+                ],
+                "primaryKey": [
+                    "ID"
+                ]
+            },
+            "url": "languages.csv"
+        },
+        {
+            "dc:description": "NoRaRe variables, i.e. norms, ratings or relations pertaining to a word in a language, the meaning of which can be mapped to Concepticon.",
+            "dc:extent": 713,
+            "tableSchema": {
+                "columns": [
+                    {
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#id",
+                        "name": "ID"
+                    },
+                    {
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#contributionReference",
+                        "name": "Dataset_ID"
+                    },
+                    {
+                        "dc:description": "NoRaRe variables always pertain to words in a single language. (If a study measured a variable for multiple languages, NoRaRe will list multiple variables for the corresponding dataset.)",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#languageReference",
+                        "name": "Language_ID"
+                    },
+                    {
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#name",
+                        "name": "Name"
+                    },
+                    {
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#description",
+                        "name": "Note"
+                    },
+                    {
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#comment",
+                        "name": "Other"
+                    },
+                    {
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#source",
+                        "separator": ";",
+                        "name": "Source"
+                    },
+                    {
+                        "datatype": {
+                            "base": "string",
+                            "format": "norms|ratings|relations"
+                        },
+                        "name": "Category"
+                    },
+                    {
+                        "datatype": {
+                            "base": "string",
+                            "format": "cardinality|linguistic|logarithmic|magnitude|mean|normalized|numeric|object|ordinality|percentage|semantic|standardized|sum|tokens"
+                        },
+                        "name": "Structure"
+                    },
+                    {
+                        "datatype": {
+                            "base": "string",
+                            "format": "concept lists|corpus|dictionaries|meta|other|user|users"
+                        },
+                        "name": "Rating"
+                    },
+                    {
+                        "name": "Tag"
+                    },
+                    {
+                        "dc:description": "CSVW Datatype description of the values for this variable.",
+                        "datatype": "json",
+                        "name": "Datatype"
+                    },
+                    {
+                        "dc:description": "URI template to create full HTTP URLs from variable values",
+                        "datatype": "string",
+                        "name": "valueUrl"
+                    }
+                ],
+                "foreignKeys": [
+                    {
+                        "columnReference": [
+                            "Dataset_ID"
+                        ],
+                        "reference": {
+                            "resource": "datasets.csv",
+                            "columnReference": [
+                                "ID"
+                            ]
+                        }
+                    },
+                    {
+                        "columnReference": [
+                            "Language_ID"
+                        ],
+                        "reference": {
+                            "resource": "languages.csv",
+                            "columnReference": [
+                                "ID"
+                            ]
+                        }
+                    }
+                ],
+                "primaryKey": [
+                    "ID"
+                ]
+            },
+            "url": "variables.csv"
+        },
+        {
+            "dc:description": "A norm, rating or relation assigned to a word as measurement of a variable in a dataset aggregated by NoRaRe.",
+            "dc:extent": 601437,
+            "tableSchema": {
+                "columns": [
+                    {
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#id",
+                        "name": "ID"
+                    },
+                    {
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#formReference",
+                        "name": "Unit_ID"
+                    },
+                    {
+                        "datatype": "string",
+                        "name": "Variable_ID"
+                    },
+                    {
+                        "dc:description": "A measurement of a variable for a particular word, typed according to the 'Datatype' column of the associated variable.",
+                        "name": "Value"
+                    }
+                ],
+                "foreignKeys": [
+                    {
+                        "columnReference": [
+                            "Unit_ID"
+                        ],
+                        "reference": {
+                            "resource": "glosses.csv",
+                            "columnReference": [
+                                "ID"
+                            ]
+                        }
+                    },
+                    {
+                        "columnReference": [
+                            "Variable_ID"
+                        ],
+                        "reference": {
+                            "resource": "variables.csv",
+                            "columnReference": [
+                                "ID"
+                            ]
+                        }
+                    }
+                ],
+                "primaryKey": [
+                    "ID"
+                ]
+            },
+            "url": "norare.csv"
+        }
+    ]
+}

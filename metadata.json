@@ -1,0 +1,8 @@
+{
+    "id": "norare",
+    "title": "Database of Cross-Linguistic Norms, Ratings, and Relations for Words and Concepts as CLDF dataset",
+    "description": null,
+    "license": "CC-BY-4.0",
+    "url": "https://norare.clld.org",
+    "citation": "Tjuka, Annika, Robert Forkel, and Johann-Mattis List. 2022. Linking Norms, Ratings, and Relations of Words and Concepts Across Multiple Language Varieties. Behavior Research Methods 54. 864–884. DOI: 10.3758/s13428-021-01650-1"
+}

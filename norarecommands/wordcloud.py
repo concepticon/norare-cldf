@@ -1,6 +1,8 @@
 """
 Create a wordcloud from the tags used to describe NoRaRe variables.
 """
+import collections
+
 from clldutils.clilib import PathType
 from wordcloud import WordCloud
 
@@ -13,7 +15,8 @@ def register(parser):
 
 def run(args):
     ds = Dataset().cldf_reader()
-    wc = WordCloud().generate(' '.join([r['Tag'] for r in ds['unit-parameters.csv']]))
+    wc = WordCloud().generate_from_frequencies(
+        collections.Counter([r['Tag'] for r in ds['variables.csv']]))
     img = wc.to_image()
     if args.output:
         img.save(str(args.output))
