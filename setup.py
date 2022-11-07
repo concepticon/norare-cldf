@@ -24,7 +24,7 @@ setup(
     ],
     extras_require={
         'test': [
-            'pytest-cldf',
+            'pytest-cldf>=0.3',
         ],
         'correlation': [
             'pandas',
