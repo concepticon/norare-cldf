@@ -45,6 +45,8 @@ img = wc.to_image()
 img.show()
 ```
 
+![wordcloud](wc.png)
+
 
 ## Reading data from multiple tables
 
