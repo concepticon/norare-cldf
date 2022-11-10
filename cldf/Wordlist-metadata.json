@@ -16,7 +16,7 @@
         {
             "rdf:about": "https://github.com/concepticon/norare-cldf",
             "rdf:type": "prov:Entity",
-            "dc:created": "a76bdf4",
+            "dc:created": "d88920d",
             "dc:title": "Repository"
         },
         {
@@ -415,11 +415,6 @@
                         "dc:description": "CSVW Datatype description of the values for this variable.",
                         "datatype": "json",
                         "name": "Datatype"
-                    },
-                    {
-                        "dc:description": "URI template to create full HTTP URLs from variable values",
-                        "datatype": "string",
-                        "name": "valueUrl"
                     }
                 ],
                 "foreignKeys": [

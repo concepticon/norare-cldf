@@ -159,10 +159,6 @@ Information on how to use the data is available at [doc](doc/).
                 "name": "Datatype",
                 "dc:description": "CSVW Datatype description of the values for this variable.",
                 "datatype": "json"},
-            {
-                "name": "valueUrl",
-                "dc:description": "URI template to create full HTTP URLs from variable values",
-                "datatype": "string"},
         )
         t.common_props['dc:description'] = \
             "NoRaRe variables, i.e. norms, ratings or relations pertaining to a word in a " \
@@ -311,18 +307,20 @@ Information on how to use the data is available at [doc](doc/).
 
             # Add a Unit-Parameter
             upid = '{}-{}'.format(dsid, row['NAME'])
+            colspec = column.asdict()
+            if 'valueUrl' in colspec:
+                colspec['valueUrl'] = str(column.valueUrl).replace(row['NAME'], 'Value')
             args.writer.objects['variables.csv'].append(dict(
                 ID=upid,
                 Dataset_ID=dsid,
                 Language_ID=lg.alpha_3,
                 Note=MarkdownLink.replace(row['NOTE'], links),
                 Other=row['OTHER'],
-                Datatype=column.asdict(),
+                Datatype=colspec,
                 Category=row['NORARE'],
                 Method=row['RATING'],
                 Type=row['STRUCTURE'],
                 Result=row['TYPE'],
-                valueUrl=str(column.valueUrl).replace(row['NAME'], 'Value') if column.valueUrl else None,
                 Source=[row['SOURCE']] if row['SOURCE'] else [],
             ))
             if row['SOURCE']:

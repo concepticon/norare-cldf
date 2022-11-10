@@ -22,3 +22,17 @@
   ```shell
   cldfbench readme cldfbench_norare.py 
   ```
+- create the release commit:
+  ```shell
+  git commit -a -m "release <VERSION>"
+  ```
+- create a release tag:
+  ```shell
+  git tag -a v<VERSION> -m"<VERSION> release"
+  ```
+- push to GitHub:
+  ```shell
+  git push origin
+  git push --tags
+  ```
+- create release on GitHub, making sure it is picked up by Zenodo
