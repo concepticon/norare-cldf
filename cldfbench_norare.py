@@ -8,7 +8,7 @@ from pycldf import Source
 from cldfbench import Dataset as BaseDataset, CLDFSpec
 from pyconcepticon import Concepticon
 from pybtex.database import parse_string
-from clldutils.markup import iter_markdown_tables
+from clldutils.markup import iter_markdown_tables, iter_markdown_sections
 from clldutils.markup import MarkdownLink
 
 # Map macrolanguages to the "most standard" language (mainly to get coordinates)
@@ -207,12 +207,16 @@ Information on how to use the data is available at [doc](doc/).
             "Name | Role",
             "--- | ---",
         ]
-        header, rows = next(iter_markdown_tables(
-            self.raw_dir.joinpath('norare-data', 'CONTRIBUTORS.md').read_text(encoding='utf8')))
+        contributors_md = {
+            h.replace('#', '').strip(): text for _, h, text in iter_markdown_sections(
+                self.raw_dir.joinpath('norare-data', 'CONTRIBUTORS.md').read_text(encoding='utf8'))
+        }
+        header, rows = next(iter_markdown_tables(contributors_md['Editors']))
         for row in rows:
             ed = dict(zip(header, row))
             if ed['Period'].endswith('-'):
                 contribs.append('{} | author'.format(ed['Name']))
+        contribs.append('\n\n## Grant information\n\n{}'.format(contributors_md['Grant information']))
         self.dir.joinpath('CONTRIBUTORS.md').write_text('\n'.join(contribs), encoding='utf8')
         self.schema(args.writer.cldf)
         glosses_by_id = glosses_by_language(Concepticon(self.raw_dir / 'concepticon-data'))
