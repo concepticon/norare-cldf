@@ -6,7 +6,7 @@ cffi==1.14.5
 chardet==3.0.4
 cldfbench==1.13.0
 -e git+https://github.com/concepticon/concepticon-cldf@901b9daa6b92cc9811cd0a0b64d9f11eb7f37c99#egg=cldfbench_concepticon
--e git+https://github.com/concepticon/norare-cldf@b8eece19e20b2fc7e961f1137f643536e184923a#egg=cldfbench_norare
+-e git+https://github.com/concepticon/norare-cldf@541fd15af27266ff1650cbc100487f9932c79a6c#egg=cldfbench_norare
 cldfcatalog==1.5.1
 cldfviz==0.9.0
 cldfzenodo==0.2.0

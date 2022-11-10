@@ -122,6 +122,8 @@ Information on how to use the data is available at [doc](doc/).
                 "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#name"},
             {
                 "name": "Note",
+                "dc:format": "text/markdown",
+                "dc:conformsTo": "CLDF markdown",
                 "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#description"},
             {
                 "name": "Other",
@@ -185,6 +187,9 @@ Information on how to use the data is available at [doc](doc/).
                 "name": "Alias"}
         ),
         cldf['ContributionTable', 'Contributor'].separator = ' and '
+        cldf['ContributionTable', 'Description'].common_props.update({
+            "dc:format": "text/markdown",
+            "dc:conformsTo": "CLDF markdown"})
 
     def cmd_makecldf(self, args):
         contribs = [
@@ -293,7 +298,7 @@ Information on how to use the data is available at [doc](doc/).
                 Language_ID=lg.alpha_3,
                 Note=MarkdownLink.replace(row['NOTE'], links),
                 Other=row['OTHER'],
-                Datatype=column.datatype.asdict(),
+                Datatype=column.asdict(),
                 Category=row['NORARE'],
                 Rating=row['RATING'],
                 Structure=row['STRUCTURE'],
@@ -313,6 +318,7 @@ Information on how to use the data is available at [doc](doc/).
                     args.writer.objects['ParameterTable'].append(dict(
                         ID=r['CONCEPTICON_ID'],
                         Name=r['CONCEPTICON_GLOSS'],
+                        Description='',  # concepticon-data/concepticondata/concepticon.tsv -> DEFINITION
                         glosses={
                             k: sorted(v) for k, v in
                             glosses_by_id[int(r['CONCEPTICON_ID'])].items()}))
@@ -341,7 +347,7 @@ Information on how to use the data is available at [doc](doc/).
                     ID=uvid,
                     Unit_ID=uid,
                     Variable_ID=upid,
-                    Value=column.datatype.formatted(r[row['NAME']]),
+                    Value=column.write(r[row['NAME']]),
                 ))
         for p in args.writer.objects['ParameterTable']:
             p['count_datasets'] = len(count_datasets.get(p['ID'], []))

@@ -13,9 +13,10 @@
   ```shell
   cldfbench zenodo cldfbench_norare.py
   ```
-- recreate the wordcloud for the README:
+- recreate the wordcloud for the README and the correlation plot for the docs:
   ```shell
   cldfbench norare.wordcloud -o doc/wc.png
+  cldfbench norare.correlation -o doc/corr.png
   ```
 - recreate the README:
   ```shell

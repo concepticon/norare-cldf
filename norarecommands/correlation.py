@@ -4,6 +4,8 @@ import sqlite3
 
 from PIL import Image
 from clldutils.clilib import PathType
+from pycldf import Database
+from cldfbench_norare import Dataset
 
 QUERY = """
 SELECT
@@ -96,23 +98,30 @@ CORRS = [
 
 
 def register(parser):
-    parser.add_argument('db', type=PathType(type='file'))
+    parser.add_argument(
+        '--db',
+        help="SQLite database created from the CLDF dataset via 'cldf createdb'",
+        type=PathType(type='file'),
+        default=None)
     parser.add_argument('-x', default='Scott-2019-Ratings-ENGLISH_AROUSAL_MEAN')
     parser.add_argument('-y', default='Moors-2013-Ratings-DUTCH_AROUSAL_MEAN')
     parser.add_argument('-o', default='correlation.png')
 
 
 def run(args):
+    if args.db is None:
+        db = Database(Dataset().cldf_reader())
+        db.write_from_tg()
+        conn = db.connection()
+    else:
+        conn = sqlite3.connect(str(args.db))
     try:
         import pandas as pd
         import seaborn as sns
     except ImportError:
         args.log.error('Please install the dataset with "pip install -e .[correlation]"')
         return
-    plot = sns.lmplot(
-        x='x',
-        y='y',
-        data=pd.read_sql(QUERY.format(args.x, args.y), sqlite3.connect(args.db)))
+    plot = sns.lmplot(x='x', y='y', data=pd.read_sql(QUERY.format(args.x, args.y), conn))
     plot.set(title='x: {} vs. y: {}'.format(args.x, args.y))
     plot.fig.savefig(args.o, bbox_inches='tight')
     Image.open(args.o).show()

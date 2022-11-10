@@ -1,6 +1,6 @@
 <a name="ds-wordlistmetadatajson"> </a>
 
-# Wordlist Database of Cross-Linguistic Norms, Ratings, and Relations for Words and Concepts
+# Wordlist Database of Cross-Linguistic Norms, Ratings, and Relations for Words and Concepts as CLDF dataset
 
 **CLDF Metadata**: [Wordlist-metadata.json](./Wordlist-metadata.json)
 
@@ -13,7 +13,7 @@ property | value
 [dc:identifier](http://purl.org/dc/terms/identifier) | https://norare.clld.org
 [dc:license](http://purl.org/dc/terms/license) | https://creativecommons.org/licenses/by/4.0/
 [dcat:accessURL](http://www.w3.org/ns/dcat#accessURL) | https://github.com/concepticon/norare-cldf
-[prov:wasDerivedFrom](http://www.w3.org/ns/prov#wasDerivedFrom) | <ol><li><a href="https://github.com/concepticon/norare-cldf/tree/b8eece1">concepticon/norare-cldf b8eece1</a></li><li><a href="https://github.com/glottolog/glottolog/tree/v4.6">Glottolog v4.6</a></li><li><a href="https://github.com/concepticon/concepticon-data/tree/v3.0.0">concepticon/concepticon-data v3.0.0</a></li><li><a href="https://github.com/concepticon/norare-data/tree/v1.0">concepticon/norare-data v1.0</a></li></ol>
+[prov:wasDerivedFrom](http://www.w3.org/ns/prov#wasDerivedFrom) | <ol><li><a href="https://github.com/concepticon/norare-cldf/tree/541fd15">concepticon/norare-cldf 541fd15</a></li><li><a href="https://github.com/glottolog/glottolog/tree/v4.6">Glottolog v4.6</a></li><li><a href="https://github.com/concepticon/concepticon-data/tree/v3.0.0">concepticon/concepticon-data v3.0.0</a></li><li><a href="https://github.com/concepticon/norare-data/tree/v1.0.1">concepticon/norare-data v1.0.1</a></li></ol>
 [prov:wasGeneratedBy](http://www.w3.org/ns/prov#wasGeneratedBy) | <ol><li><strong>python</strong>: 3.8.10</li><li><strong>python-packages</strong>: <a href="./requirements.txt">requirements.txt</a></li></ol>
 [rdf:ID](http://www.w3.org/1999/02/22-rdf-syntax-ns#ID) | norare
 [rdf:type](http://www.w3.org/1999/02/22-rdf-syntax-ns#type) | http://www.w3.org/ns/dcat#Distribution

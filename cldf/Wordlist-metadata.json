@@ -10,13 +10,13 @@
     "dc:identifier": "https://norare.clld.org",
     "dc:license": "https://creativecommons.org/licenses/by/4.0/",
     "dc:source": "sources.bib",
-    "dc:title": "Database of Cross-Linguistic Norms, Ratings, and Relations for Words and Concepts",
+    "dc:title": "Database of Cross-Linguistic Norms, Ratings, and Relations for Words and Concepts as CLDF dataset",
     "dcat:accessURL": "https://github.com/concepticon/norare-cldf",
     "prov:wasDerivedFrom": [
         {
             "rdf:about": "https://github.com/concepticon/norare-cldf",
             "rdf:type": "prov:Entity",
-            "dc:created": "b8eece1",
+            "dc:created": "541fd15",
             "dc:title": "Repository"
         },
         {
@@ -34,7 +34,7 @@
         {
             "rdf:about": "https://github.com/concepticon/norare-data",
             "rdf:type": "prov:Entity",
-            "dc:created": "v1.0",
+            "dc:created": "v1.0.1",
             "dc:title": "Repository"
         }
     ],
@@ -223,6 +223,8 @@
                         "name": "Name"
                     },
                     {
+                        "dc:conformsTo": "CLDF markdown",
+                        "dc:format": "text/markdown",
                         "datatype": "string",
                         "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#description",
                         "required": false,
@@ -359,6 +361,8 @@
                         "name": "Name"
                     },
                     {
+                        "dc:conformsTo": "CLDF markdown",
+                        "dc:format": "text/markdown",
                         "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#description",
                         "name": "Note"
                     },
