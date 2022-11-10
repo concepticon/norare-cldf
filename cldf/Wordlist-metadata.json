@@ -16,7 +16,7 @@
         {
             "rdf:about": "https://github.com/concepticon/norare-cldf",
             "rdf:type": "prov:Entity",
-            "dc:created": "541fd15",
+            "dc:created": "a76bdf4",
             "dc:title": "Repository"
         },
         {
@@ -184,6 +184,12 @@
                         "name": "Description"
                     },
                     {
+                        "dc:description": "Identifier of the corresponding concept set in Concepticon",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#concepticonReference",
+                        "valueUrl": "http://concepticon.clld.org/parameters/{Concepticon_ID}",
+                        "name": "Concepticon_ID"
+                    },
+                    {
                         "datatype": "json",
                         "name": "glosses"
                     },
@@ -204,6 +210,7 @@
         },
         {
             "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#ContributionTable",
+            "dc:description": "Datasets in NoRaRe are published studies from which NoRaRe variables were extracted.",
             "dc:extent": 113,
             "tableSchema": {
                 "columns": [
@@ -268,6 +275,7 @@
         },
         {
             "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#LanguageTable",
+            "dc:description": "Languages the words of which were investigated in NoRaRe datasets.",
             "dc:extent": 39,
             "tableSchema": {
                 "columns": [
@@ -376,6 +384,7 @@
                         "name": "Source"
                     },
                     {
+                        "dc:description": "Variables are categorized as either `norms`, `ratings` or `relations`",
                         "datatype": {
                             "base": "string",
                             "format": "norms|ratings|relations"
@@ -383,21 +392,24 @@
                         "name": "Category"
                     },
                     {
+                        "dc:description": "Coarse datatype description for the variable",
                         "datatype": {
                             "base": "string",
                             "format": "cardinality|linguistic|logarithmic|magnitude|mean|normalized|numeric|object|ordinality|percentage|semantic|standardized|sum|tokens"
                         },
-                        "name": "Structure"
+                        "name": "Type"
                     },
                     {
+                        "dc:description": "Keyword describing how values for the variable were determind",
                         "datatype": {
                             "base": "string",
                             "format": "concept lists|corpus|dictionaries|meta|other|user|users"
                         },
-                        "name": "Rating"
+                        "name": "Method"
                     },
                     {
-                        "name": "Tag"
+                        "dc:description": "Keyword describing what a variable measures",
+                        "name": "Result"
                     },
                     {
                         "dc:description": "CSVW Datatype description of the values for this variable.",

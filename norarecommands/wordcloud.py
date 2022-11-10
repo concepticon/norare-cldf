@@ -16,7 +16,7 @@ def register(parser):
 def run(args):
     ds = Dataset().cldf_reader()
     wc = WordCloud().generate_from_frequencies(
-        collections.Counter([r['Tag'] for r in ds['variables.csv']]))
+        collections.Counter([r['Result'] for r in ds['variables.csv']]))
     img = wc.to_image()
     if args.output:
         img.save(str(args.output))

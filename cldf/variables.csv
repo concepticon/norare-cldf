@@ -1,4 +1,4 @@
-ID,Dataset_ID,Language_ID,Name,Note,Other,Source,Category,Structure,Rating,Tag,Datatype,valueUrl
+ID,Dataset_ID,Language_ID,Name,Note,Other,Source,Category,Type,Method,Result,Datatype,valueUrl
 Bond-2013-OMW-IN_DEGREE,Bond-2013-OMW,eng,,The number of hypernyms of a given concept.,in degree,,relations,cardinality,user,hyperonym,"{""datatype"": ""nonNegativeInteger"", ""name"": ""IN_DEGREE"", ""titles"": ""in_degree""}",
 Bond-2013-OMW-OUT_DEGREE,Bond-2013-OMW,eng,,The number of hyponyms of a given concept.,out degree,,relations,cardinality,user,hyponym,"{""datatype"": ""nonNegativeInteger"", ""name"": ""OUT_DEGREE"", ""titles"": ""out_degree""}",
 Alonso-2015-AoA-SPANISH_AOA_MEAN,Alonso-2015-AoA,spa,,Average score of AoA ratings on a scale from 1 to 11.,,,ratings,mean,user,AoA,"{""datatype"": {""base"": ""decimal"", ""minimum"": ""1"", ""maximum"": ""11""}, ""name"": ""SPANISH_AOA_MEAN"", ""titles"": ""averageAoA""}",

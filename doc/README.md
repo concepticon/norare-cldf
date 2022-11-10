@@ -19,7 +19,7 @@ The CSV files in a CLDF dataset can readily be inspected using the tools availab
 [Unix Shell](https://swcarpentry.github.io/shell-novice/), ideally combined with more specialized tools like the ones
 in [csvkit](https://csvkit.readthedocs.io/en/latest/). So the data we want to put in the wordcloud looks as follows:
 ```shell
-$ csvcut -c Tag cldf/variables.csv | sort | uniq -c | sort -nr | head -n 10
+$ csvcut -c Result cldf/variables.csv | sort | uniq -c | sort -nr | head -n 10
     143 sensory modality
      90 AoA
      55 frequency
@@ -40,7 +40,7 @@ from wordcloud import WordCloud
 from pycldf import Dataset
 
 norare = Dataset.from_metadata('cldf/Wordlist-metadata.json')
-wc = WordCloud().generate_from_frequencies(Counter([r['Tag'] for r in norare['variables.csv']]))
+wc = WordCloud().generate_from_frequencies(Counter([r['Result'] for r in norare['variables.csv']]))
 img = wc.to_image()
 img.show()
 ```
@@ -54,7 +54,7 @@ The NoRaRe dataset - like most other CLDF datasets - contains multiple, related 
 to join data from these tables by reading the CSV and assembling related rows using any programming platform
 (like Python, R, or just the Unix Shell), we can also use a platform custom-built for this kind of data.
 CLDF contains all the
-information necessary to load a dataset into a relational database - and the [pycldf](https://github.com/cldf/pycldf)
+information necessary to load a dataset into a relational database - and a command from the [pycldf](https://github.com/cldf/pycldf)
 package can turn any CLDF dataset into a [SQLite database](https://pycldf.readthedocs.io/en/latest/db.html), which can be queried
 more comfortably using SQL.
 ```shell
@@ -82,6 +82,7 @@ WHERE
   AND c.cldf_id IN ('420', '906', '1803', '344', '670')
   AND var.category = 'norms'
   AND var.cldf_id LIKE '%FREQUENCY_LOG'
+  AND f.cldf_languageReference IN ('eng', 'deu')
 ORDER BY cid
 ```
 as
@@ -94,38 +95,19 @@ cid|cldf_name|cldf_languageReference|cldf_form|cldf_id|Value
 --- | --- | --- | --- | --- | ---
 1803|WOOD|eng|wood|Brysbaert-2009-Frequency-ENGLISH_FREQUENCY_LOG|3.139249217571607
 1803|WOOD|deu|Holz|Brysbaert-2011-Frequency-GERMAN_FREQUENCY_LOG|2.742
-1803|WOOD|zho|木头|Cai-2010-Frequency-CHINESE_FREQUENCY_LOG|2.658
-1803|WOOD|spa|madera|Cuetos-2011-Frequency-SPANISH_FREQUENCY_LOG|3.0557604646877348
-1803|WOOD|nld|hout|Keuleers-2010-Frequency-DUTCH_FREQUENCY_LOG|3.0137
-1803|WOOD|spa|madera|Alonso-2011-OralFrequency-SPANISH_FREQUENCY_LOG|1.959041392321093
-1803|WOOD|pol|drewno|Mandera-2015-Frequency-POLISH_FREQUENCY_LOG|2.95712819767681
 1803|WOOD|eng|wood|VanHeuven-2014-Frequency-ENGLISH_FREQUENCY_LOG|4.779882859349039
 344|TREE TRUNK|eng|trunk|Brysbaert-2009-Frequency-ENGLISH_FREQUENCY_LOG|3.004751155591001
 344|TREE TRUNK|deu|Stamm|Brysbaert-2011-Frequency-GERMAN_FREQUENCY_LOG|2.428
-344|TREE TRUNK|zho|树干|Cai-2010-Frequency-CHINESE_FREQUENCY_LOG|1.5051
-344|TREE TRUNK|spa|tronco|Cuetos-2011-Frequency-SPANISH_FREQUENCY_LOG|2.3560258571931225
-344|TREE TRUNK|spa|tronco|Alonso-2011-OralFrequency-SPANISH_FREQUENCY_LOG|1.342422680822206
 420|FOREST|eng|forest|Brysbaert-2009-Frequency-ENGLISH_FREQUENCY_LOG|2.984077033902831
 420|FOREST|deu|Wald|Brysbaert-2011-Frequency-GERMAN_FREQUENCY_LOG|3.094
-420|FOREST|zho|森林|Cai-2010-Frequency-CHINESE_FREQUENCY_LOG|2.9222
-420|FOREST|spa|bosque|Cuetos-2011-Frequency-SPANISH_FREQUENCY_LOG|3.353146546213979
-420|FOREST|spa|bosque|Alonso-2011-OralFrequency-SPANISH_FREQUENCY_LOG|1.505149978319906
 420|FOREST|eng|forest|VanHeuven-2014-Frequency-ENGLISH_FREQUENCY_LOG|4.668355065254214
 670|ROOT|eng|root|Brysbaert-2009-Frequency-ENGLISH_FREQUENCY_LOG|2.7283537820212285
 670|ROOT|deu|Wurzel|Brysbaert-2011-Frequency-GERMAN_FREQUENCY_LOG|1.833
-670|ROOT|zho|根|Cai-2010-Frequency-CHINESE_FREQUENCY_LOG|3.5328
-670|ROOT|spa|raíz|Cuetos-2011-Frequency-SPANISH_FREQUENCY_LOG|2.4800069429571505
-670|ROOT|spa|raíz|Alonso-2011-OralFrequency-SPANISH_FREQUENCY_LOG|1.973127853599699
-670|ROOT|pol|korzeń|Mandera-2015-Frequency-POLISH_FREQUENCY_LOG|2.35602585719312
 670|ROOT|eng|root|VanHeuven-2014-Frequency-ENGLISH_FREQUENCY_LOG|4.133803176648084
 906|TREE|eng|tree|Brysbaert-2009-Frequency-ENGLISH_FREQUENCY_LOG|3.520614521878236
 906|TREE|deu|Baum|Brysbaert-2011-Frequency-GERMAN_FREQUENCY_LOG|3.01
-906|TREE|zho|树|Cai-2010-Frequency-CHINESE_FREQUENCY_LOG|3.3324
-906|TREE|spa|árbol|Cuetos-2011-Frequency-SPANISH_FREQUENCY_LOG|3.339848783037637
-906|TREE|nld|boom|Keuleers-2010-Frequency-DUTCH_FREQUENCY_LOG|3.3591
-906|TREE|spa|árbol|Alonso-2011-OralFrequency-SPANISH_FREQUENCY_LOG|1.90848501887865
-906|TREE|pol|drzewo|Mandera-2015-Frequency-POLISH_FREQUENCY_LOG|3.47899913167336
 906|TREE|eng|tree|VanHeuven-2014-Frequency-ENGLISH_FREQUENCY_LOG|4.952044475316525
+
 
 Note that a typo in the paper specified the Concepticon ID of `FOREST` as 402 insteaf of 420.
 

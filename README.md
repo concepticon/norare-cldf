@@ -16,7 +16,8 @@ Available online at https://norare.clld.org
 
 This CLDF dataset provides the data of the corresponding release of
 [concepticon/norare-data](https://github.com/concepticon/norare-data) as CLDF Wordlist.
-The latest release of this dataset can be browsed in a clld web application at https://norare.clld.org
+The latest release of this dataset can be browsed in a clld web application at 
+[https://norare.clld.org](https://norare.clld.org).
 Information on how to use the data is available at [doc](doc/).
 
 ![wordcloud](doc/wc.png)

@@ -10,4 +10,5 @@ WHERE
   AND c.cldf_id IN ('420', '906', '1803', '344', '670')
   AND var.category = 'norms'
   AND var.cldf_id LIKE '%FREQUENCY_LOG'
+  AND f.cldf_languageReference IN ('eng', 'deu')
 ORDER BY cid

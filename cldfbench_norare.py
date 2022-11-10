@@ -62,7 +62,8 @@ class Dataset(BaseDataset):
         desc = """
 This CLDF dataset provides the data of the corresponding release of
 [concepticon/norare-data](https://github.com/concepticon/norare-data) as CLDF Wordlist.
-The latest release of this dataset can be browsed in a clld web application at https://norare.clld.org
+The latest release of this dataset can be browsed in a clld web application at 
+[https://norare.clld.org](https://norare.clld.org).
 Information on how to use the data is available at [doc](doc/).
 
 ![wordcloud](doc/wc.png)
@@ -77,12 +78,19 @@ Information on how to use the data is available at [doc](doc/).
         return d, TableGroup.from_file(d / '{}.tsv-metadata.json'.format(dsid))
 
     def schema(self, cldf):
-        cldf.add_component('LanguageTable')
+        t = cldf.add_component('LanguageTable')
+        t.common_props['dc:description'] = \
+            "Languages the words of which were investigated in NoRaRe datasets."
         cldf.add_columns(
             'ParameterTable',
+            {
+                "name": "Concepticon_ID",
+                "dc:description": "Identifier of the corresponding concept set in Concepticon",
+                "valueUrl": "http://concepticon.clld.org/parameters/{Concepticon_ID}",
+                "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#concepticonReference",
+            },
             # We need all labels for the concepts in the following languages for matching:
             # English German Chinese French Spanish Russian Portuguese
-            # maybe as JSON object, {"lg": ["label1", "label2"]}
             {"name": "glosses", "datatype": "json"},
             {"name": "count_datasets", "datatype": "nonNegativeInteger"},
             {"name": "count_variables", "datatype": "nonNegativeInteger"},
@@ -134,15 +142,19 @@ Information on how to use the data is available at [doc](doc/).
                 "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#source"},
             {
                 "name": "Category",
+                "dc:description": "Variables are categorized as either `norms`, `ratings` or `relations`",
                 "datatype": {"base": "string", "format": "norms|ratings|relations"}},
             {
-                "name": "Structure",
+                "name": "Type",
+                "dc:description": "Coarse datatype description for the variable",
                 "datatype": {"base": "string", "format": "cardinality|linguistic|logarithmic|magnitude|mean|normalized|numeric|object|ordinality|percentage|semantic|standardized|sum|tokens"}},
             {
-                "name": "Rating",
+                "name": "Method",
+                "dc:description": "Keyword describing how values for the variable were determind",
                 "datatype": {"base": "string", "format": "concept lists|corpus|dictionaries|meta|other|user|users"}},
             {
-                "name": "Tag"},
+                "name": "Result",
+                "dc:description": "Keyword describing what a variable measures"},
             {
                 "name": "Datatype",
                 "dc:description": "CSVW Datatype description of the values for this variable.",
@@ -186,6 +198,8 @@ Information on how to use the data is available at [doc](doc/).
             {
                 "name": "Alias"}
         ),
+        cldf['ContributionTable'].common_props['dc:description'] = \
+            "Datasets in NoRaRe are published studies from which NoRaRe variables were extracted."
         cldf['ContributionTable', 'Contributor'].separator = ' and '
         cldf['ContributionTable', 'Description'].common_props.update({
             "dc:format": "text/markdown",
@@ -233,6 +247,11 @@ Information on how to use the data is available at [doc](doc/).
                 'concepticon-data', 'concepticondata').read_csv(
                     'conceptlists.tsv', delimiter='\t', dicts=True)
         })
+        csdefs = {
+            r['ID']: r['DEFINITION'] for r in self.raw_dir.joinpath(
+                'concepticon-data', 'concepticondata').read_csv(
+                'concepticon.tsv', delimiter='\t', dicts=True)
+        }
 
         def links(ml):
             if ml.url.startswith(':bib:'):
@@ -300,9 +319,9 @@ Information on how to use the data is available at [doc](doc/).
                 Other=row['OTHER'],
                 Datatype=column.asdict(),
                 Category=row['NORARE'],
-                Rating=row['RATING'],
-                Structure=row['STRUCTURE'],
-                Tag=row['TYPE'],
+                Method=row['RATING'],
+                Type=row['STRUCTURE'],
+                Result=row['TYPE'],
                 valueUrl=str(column.valueUrl).replace(row['NAME'], 'Value') if column.valueUrl else None,
                 Source=[row['SOURCE']] if row['SOURCE'] else [],
             ))
@@ -318,7 +337,8 @@ Information on how to use the data is available at [doc](doc/).
                     args.writer.objects['ParameterTable'].append(dict(
                         ID=r['CONCEPTICON_ID'],
                         Name=r['CONCEPTICON_GLOSS'],
-                        Description='',  # concepticon-data/concepticondata/concepticon.tsv -> DEFINITION
+                        Description=csdefs[str(r['CONCEPTICON_ID'])],
+                        Concepticon_ID=r['CONCEPTICON_ID'],
                         glosses={
                             k: sorted(v) for k, v in
                             glosses_by_id[int(r['CONCEPTICON_ID'])].items()}))

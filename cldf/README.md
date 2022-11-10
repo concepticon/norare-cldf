@@ -13,7 +13,7 @@ property | value
 [dc:identifier](http://purl.org/dc/terms/identifier) | https://norare.clld.org
 [dc:license](http://purl.org/dc/terms/license) | https://creativecommons.org/licenses/by/4.0/
 [dcat:accessURL](http://www.w3.org/ns/dcat#accessURL) | https://github.com/concepticon/norare-cldf
-[prov:wasDerivedFrom](http://www.w3.org/ns/prov#wasDerivedFrom) | <ol><li><a href="https://github.com/concepticon/norare-cldf/tree/541fd15">concepticon/norare-cldf 541fd15</a></li><li><a href="https://github.com/glottolog/glottolog/tree/v4.6">Glottolog v4.6</a></li><li><a href="https://github.com/concepticon/concepticon-data/tree/v3.0.0">concepticon/concepticon-data v3.0.0</a></li><li><a href="https://github.com/concepticon/norare-data/tree/v1.0.1">concepticon/norare-data v1.0.1</a></li></ol>
+[prov:wasDerivedFrom](http://www.w3.org/ns/prov#wasDerivedFrom) | <ol><li><a href="https://github.com/concepticon/norare-cldf/tree/a76bdf4">concepticon/norare-cldf a76bdf4</a></li><li><a href="https://github.com/glottolog/glottolog/tree/v4.6">Glottolog v4.6</a></li><li><a href="https://github.com/concepticon/concepticon-data/tree/v3.0.0">concepticon/concepticon-data v3.0.0</a></li><li><a href="https://github.com/concepticon/norare-data/tree/v1.0.1">concepticon/norare-data v1.0.1</a></li></ol>
 [prov:wasGeneratedBy](http://www.w3.org/ns/prov#wasGeneratedBy) | <ol><li><strong>python</strong>: 3.8.10</li><li><strong>python-packages</strong>: <a href="./requirements.txt">requirements.txt</a></li></ol>
 [rdf:ID](http://www.w3.org/1999/02/22-rdf-syntax-ns#ID) | norare
 [rdf:type](http://www.w3.org/1999/02/22-rdf-syntax-ns#type) | http://www.w3.org/ns/dcat#Distribution
@@ -59,11 +59,14 @@ Name/Property | Datatype | Description
 [ID](http://cldf.clld.org/v1.0/terms.rdf#id) | `string` | Primary key
 [Name](http://cldf.clld.org/v1.0/terms.rdf#name) | `string` | 
 [Description](http://cldf.clld.org/v1.0/terms.rdf#description) | `string` | 
+[Concepticon_ID](http://cldf.clld.org/v1.0/terms.rdf#concepticonReference) | `string` | Identifier of the corresponding concept set in Concepticon
 `glosses` | `json` | 
 `count_datasets` | `nonNegativeInteger` | 
 `count_variables` | `nonNegativeInteger` | 
 
 ## <a name="table-datasetscsv"></a>Table [datasets.csv](./datasets.csv)
+
+Datasets in NoRaRe are published studies from which NoRaRe variables were extracted.
 
 property | value
  --- | ---
@@ -86,6 +89,8 @@ Name/Property | Datatype | Description
 `Alias` | `string` | 
 
 ## <a name="table-languagescsv"></a>Table [languages.csv](./languages.csv)
+
+Languages the words of which were investigated in NoRaRe datasets.
 
 property | value
  --- | ---
@@ -125,10 +130,10 @@ Name/Property | Datatype | Description
 [Note](http://cldf.clld.org/v1.0/terms.rdf#description) | `string` | 
 [Other](http://cldf.clld.org/v1.0/terms.rdf#comment) | `string` | 
 [Source](http://cldf.clld.org/v1.0/terms.rdf#source) | list of `string` (separated by `;`) | References [sources.bib::BibTeX-key](./sources.bib)
-`Category` | `string` | 
-`Structure` | `string` | 
-`Rating` | `string` | 
-`Tag` | `string` | 
+`Category` | `string` | Variables are categorized as either `norms`, `ratings` or `relations`
+`Type` | `string` | Coarse datatype description for the variable
+`Method` | `string` | Keyword describing how values for the variable were determind
+`Result` | `string` | Keyword describing what a variable measures
 `Datatype` | `json` | CSVW Datatype description of the values for this variable.
 `valueUrl` | `string` | URI template to create full HTTP URLs from variable values
 
