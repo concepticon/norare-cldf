@@ -195,3 +195,49 @@ FROM (
     ORDER BY c DESC
 ) AS s;
 ```
+
+
+## Datatypes
+
+When assembling the data to look at the correlation above, we explicitly converted the values in the `Value` column of
+`norare.csv` to numbers, using the SQL function call `CAST(v AS float)`. NoRaRe variables provide norms, ratings and relations
+in a variety of datatypes. While most variables have numeric values, some are categorical (i.e. have strings from a controlled
+vocabulary as values), and a few aggregate raw measurements into composite objects. Since the NoRaRe data provides all
+these values in a single column of the `norare.csv` table, these values are given as string representations. So values in
+`norare.csv` may look like `0.123`, but also like `ANT` or even `{"platt-wellig":{"ANT":7.5}}` - which may interfere with
+datatype inference mechanisms in tools like the Python package `pandas` or CSV readers for the R language.
+
+Since each CLDF dataset conforms to the [CSVW specification](https://w3c.github.io/csvw/syntax/), NoRaRe uses
+[CSVW datatype specifications](https://w3c.github.io/csvw/syntax/#datatypes) to explicitly state the datatype of the
+values for a variable. Thus, the `Datatype` column of the `variables.csv` table contains a [CSVW column specification](https://w3c.github.io/csvw/syntax/#columns)
+in JSON format, including a `datatype` property which can be used to interpret the values. (Note that the `datatype` property
+alone would not suffice because NoRaRe variables may have lists of atomic types as values, which is signaled by a
+`separator` property in the column specification.)
+
+In practice, this means that one should always keep track of which variable a set of values belongs to and and inspect
+the associated datatype to interpret the data correctly. Using a [CSVW-aware tools](https://csvw.org) like the Python package `csvw`
+reading the values for a variable could look as follows:
+```python
+>>> from csvw.dsv import reader
+>>> from csvw.metadata import Column
+>>> import json
+>>> datatypes = {r['ID']: r['Datatype'] for r in reader('cldf/variables.csv', dicts=True)}
+>>> col = datatypes['Alonso-2015-AoA-SPANISH_AOA_MEAN']
+>>> col
+'{"datatype": {"base": "decimal", "minimum": "1", "maximum": "11"}, "name": "SPANISH_AOA_MEAN", "titles": "averageAoA"}'
+>>> col = Column.fromvalue(json.loads(datatypes['Alonso-2015-AoA-SPANISH_AOA_MEAN']))
+>>> col.read('3.4')
+Decimal('3.4')
+>>> col.read('30')
+...
+ValueError: value must be <= 11
+```
+
+Or for list-valued variables:
+```python
+>>> col = Column.fromvalue(json.loads(datatypes['Baroni-2011-200-COHYPONYMY']))
+>>> col.separator
+', '
+>>> col.read('word1, word2, word3')
+['word1', 'word2', 'word3']
+```
