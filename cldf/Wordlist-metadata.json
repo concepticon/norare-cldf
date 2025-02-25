@@ -16,32 +16,32 @@
         {
             "rdf:about": "https://github.com/concepticon/norare-cldf",
             "rdf:type": "prov:Entity",
-            "dc:created": "e648e9a",
+            "dc:created": "v1.0.0",
             "dc:title": "Repository"
         },
         {
             "rdf:about": "https://github.com/glottolog/glottolog",
             "rdf:type": "prov:Entity",
-            "dc:created": "v4.6",
+            "dc:created": "v5.1",
             "dc:title": "Glottolog"
-        },
-        {
-            "rdf:about": "https://github.com/concepticon/concepticon-data",
-            "rdf:type": "prov:Entity",
-            "dc:created": "v3.0.0",
-            "dc:title": "Repository"
         },
         {
             "rdf:about": "https://github.com/concepticon/norare-data",
             "rdf:type": "prov:Entity",
-            "dc:created": "v1.0.1",
+            "dc:created": "v1.1",
+            "dc:title": "Repository"
+        },
+        {
+            "rdf:about": "https://github.com/concepticon/concepticon-data",
+            "rdf:type": "prov:Entity",
+            "dc:created": "v3.4.0",
             "dc:title": "Repository"
         }
     ],
     "prov:wasGeneratedBy": [
         {
             "dc:title": "python",
-            "dc:description": "3.8.10"
+            "dc:description": "3.12.3"
         },
         {
             "dc:title": "python-packages",
@@ -54,7 +54,7 @@
         {
             "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#FormTable",
             "dc:description": "Words in individual languages to which NoRaRe variables assign norms, ratings or relations.",
-            "dc:extent": 126446,
+            "dc:extent": 142527,
             "tableSchema": {
                 "columns": [
                     {
@@ -159,7 +159,7 @@
         {
             "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#ParameterTable",
             "dc:description": "This table lists the Concepticon conceptsets to which the meaning of words, studied in NoRaRe datasets, are linked, thus providing the backbone for cross-linguistic analysis of NoRaRe data.",
-            "dc:extent": 3564,
+            "dc:extent": 3634,
             "tableSchema": {
                 "columns": [
                     {
@@ -182,6 +182,12 @@
                         "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#description",
                         "required": false,
                         "name": "Description"
+                    },
+                    {
+                        "datatype": "json",
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#columnSpec",
+                        "required": false,
+                        "name": "ColumnSpec"
                     },
                     {
                         "dc:description": "Identifier of the corresponding concept set in Concepticon",
@@ -211,7 +217,7 @@
         {
             "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#ContributionTable",
             "dc:description": "Datasets in NoRaRe are published studies from which NoRaRe variables were extracted.",
-            "dc:extent": 113,
+            "dc:extent": 126,
             "tableSchema": {
                 "columns": [
                     {
@@ -348,7 +354,7 @@
         },
         {
             "dc:description": "NoRaRe variables, i.e. norms, ratings or relations pertaining to a word in a language, the meaning of which can be mapped to Concepticon.",
-            "dc:extent": 713,
+            "dc:extent": 863,
             "tableSchema": {
                 "columns": [
                     {
@@ -449,7 +455,7 @@
         },
         {
             "dc:description": "A norm, rating or relation assigned to a word as measurement of a variable in a dataset aggregated by NoRaRe.",
-            "dc:extent": 601437,
+            "dc:extent": 677593,
             "tableSchema": {
                 "columns": [
                     {

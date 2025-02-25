@@ -13,8 +13,8 @@ property | value
 [dc:identifier](http://purl.org/dc/terms/identifier) | https://norare.clld.org
 [dc:license](http://purl.org/dc/terms/license) | https://creativecommons.org/licenses/by/4.0/
 [dcat:accessURL](http://www.w3.org/ns/dcat#accessURL) | https://github.com/concepticon/norare-cldf
-[prov:wasDerivedFrom](http://www.w3.org/ns/prov#wasDerivedFrom) | <ol><li><a href="https://github.com/concepticon/norare-cldf/tree/e648e9a">concepticon/norare-cldf e648e9a</a></li><li><a href="https://github.com/glottolog/glottolog/tree/v4.6">Glottolog v4.6</a></li><li><a href="https://github.com/concepticon/concepticon-data/tree/v3.0.0">concepticon/concepticon-data v3.0.0</a></li><li><a href="https://github.com/concepticon/norare-data/tree/v1.0.1">concepticon/norare-data v1.0.1</a></li></ol>
-[prov:wasGeneratedBy](http://www.w3.org/ns/prov#wasGeneratedBy) | <ol><li><strong>python</strong>: 3.8.10</li><li><strong>python-packages</strong>: <a href="./requirements.txt">requirements.txt</a></li></ol>
+[prov:wasDerivedFrom](http://www.w3.org/ns/prov#wasDerivedFrom) | <ol><li><a href="https://github.com/concepticon/norare-cldf/tree/v1.0.0">concepticon/norare-cldf v1.0.0</a></li><li><a href="https://github.com/glottolog/glottolog/tree/v5.1">Glottolog v5.1</a></li><li><a href="https://github.com/concepticon/norare-data/tree/v1.1">concepticon/norare-data v1.1</a></li><li><a href="https://github.com/concepticon/concepticon-data/tree/v3.4.0">concepticon/concepticon-data v3.4.0</a></li></ol>
+[prov:wasGeneratedBy](http://www.w3.org/ns/prov#wasGeneratedBy) | <ol><li><strong>python</strong>: 3.12.3</li><li><strong>python-packages</strong>: <a href="./requirements.txt">requirements.txt</a></li></ol>
 [rdf:ID](http://www.w3.org/1999/02/22-rdf-syntax-ns#ID) | norare
 [rdf:type](http://www.w3.org/1999/02/22-rdf-syntax-ns#type) | http://www.w3.org/ns/dcat#Distribution
 
@@ -26,14 +26,14 @@ Words in individual languages to which NoRaRe variables assign norms, ratings or
 property | value
  --- | ---
 [dc:conformsTo](http://purl.org/dc/terms/conformsTo) | [CLDF FormTable](http://cldf.clld.org/v1.0/terms.rdf#FormTable)
-[dc:extent](http://purl.org/dc/terms/extent) | 126446
+[dc:extent](http://purl.org/dc/terms/extent) | 142527
 
 
 ### Columns
 
 Name/Property | Datatype | Description
  --- | --- | --- 
-[ID](http://cldf.clld.org/v1.0/terms.rdf#id) | `string` | Primary key
+[ID](http://cldf.clld.org/v1.0/terms.rdf#id) | `string`<br>Regex: `[a-zA-Z0-9_\-]+` | Primary key
 [Language_ID](http://cldf.clld.org/v1.0/terms.rdf#languageReference) | `string` | A reference to a language (or variety) the form belongs to<br>References [languages.csv::ID](#table-languagescsv)
 [Parameter_ID](http://cldf.clld.org/v1.0/terms.rdf#parameterReference) | `string` | A reference to the meaning denoted by the form<br>References [concepticon.csv::ID](#table-concepticoncsv)
 [Form](http://cldf.clld.org/v1.0/terms.rdf#form) | `string` | Some datasets provide data without specifying the associated word forms in the studied languages. In these cases, the 'Form' value is set to '<NA>'.
@@ -49,16 +49,17 @@ This table lists the Concepticon conceptsets to which the meaning of words, stud
 property | value
  --- | ---
 [dc:conformsTo](http://purl.org/dc/terms/conformsTo) | [CLDF ParameterTable](http://cldf.clld.org/v1.0/terms.rdf#ParameterTable)
-[dc:extent](http://purl.org/dc/terms/extent) | 3564
+[dc:extent](http://purl.org/dc/terms/extent) | 3634
 
 
 ### Columns
 
 Name/Property | Datatype | Description
  --- | --- | --- 
-[ID](http://cldf.clld.org/v1.0/terms.rdf#id) | `string` | Primary key
+[ID](http://cldf.clld.org/v1.0/terms.rdf#id) | `string`<br>Regex: `[a-zA-Z0-9_\-]+` | Primary key
 [Name](http://cldf.clld.org/v1.0/terms.rdf#name) | `string` | 
 [Description](http://cldf.clld.org/v1.0/terms.rdf#description) | `string` | 
+[ColumnSpec](http://cldf.clld.org/v1.0/terms.rdf#columnSpec) | `json` | 
 [Concepticon_ID](http://cldf.clld.org/v1.0/terms.rdf#concepticonReference) | `string` | Identifier of the corresponding concept set in Concepticon
 `glosses` | `json` | 
 `count_datasets` | `nonNegativeInteger` | 
@@ -71,14 +72,14 @@ Datasets in NoRaRe are published studies from which NoRaRe variables were extrac
 property | value
  --- | ---
 [dc:conformsTo](http://purl.org/dc/terms/conformsTo) | [CLDF ContributionTable](http://cldf.clld.org/v1.0/terms.rdf#ContributionTable)
-[dc:extent](http://purl.org/dc/terms/extent) | 113
+[dc:extent](http://purl.org/dc/terms/extent) | 126
 
 
 ### Columns
 
 Name/Property | Datatype | Description
  --- | --- | --- 
-[ID](http://cldf.clld.org/v1.0/terms.rdf#id) | `string` | Primary key
+[ID](http://cldf.clld.org/v1.0/terms.rdf#id) | `string`<br>Regex: `[a-zA-Z0-9_\-]+` | Primary key
 [Name](http://cldf.clld.org/v1.0/terms.rdf#name) | `string` | 
 [Description](http://cldf.clld.org/v1.0/terms.rdf#description) | `string` | 
 [Contributor](http://cldf.clld.org/v1.0/terms.rdf#contributor) | list of `string` (separated by ` and `) | 
@@ -102,13 +103,13 @@ property | value
 
 Name/Property | Datatype | Description
  --- | --- | --- 
-[ID](http://cldf.clld.org/v1.0/terms.rdf#id) | `string` | Primary key
+[ID](http://cldf.clld.org/v1.0/terms.rdf#id) | `string`<br>Regex: `[a-zA-Z0-9_\-]+` | Primary key
 [Name](http://cldf.clld.org/v1.0/terms.rdf#name) | `string` | 
 [Macroarea](http://cldf.clld.org/v1.0/terms.rdf#macroarea) | `string` | 
-[Latitude](http://cldf.clld.org/v1.0/terms.rdf#latitude) | `decimal` | 
-[Longitude](http://cldf.clld.org/v1.0/terms.rdf#longitude) | `decimal` | 
-[Glottocode](http://cldf.clld.org/v1.0/terms.rdf#glottocode) | `string` | 
-[ISO639P3code](http://cldf.clld.org/v1.0/terms.rdf#iso639P3code) | `string` | 
+[Latitude](http://cldf.clld.org/v1.0/terms.rdf#latitude) | `decimal`<br>&ge; -90<br>&le; 90 | 
+[Longitude](http://cldf.clld.org/v1.0/terms.rdf#longitude) | `decimal`<br>&ge; -180<br>&le; 180 | 
+[Glottocode](http://cldf.clld.org/v1.0/terms.rdf#glottocode) | `string`<br>Regex: `[a-z0-9]{4}[1-9][0-9]{3}` | 
+[ISO639P3code](http://cldf.clld.org/v1.0/terms.rdf#iso639P3code) | `string`<br>Regex: `[a-z]{3}` | 
 
 ## <a name="table-variablescsv"></a>Table [variables.csv](./variables.csv)
 
@@ -116,7 +117,7 @@ NoRaRe variables, i.e. norms, ratings or relations pertaining to a word in a lan
 
 property | value
  --- | ---
-[dc:extent](http://purl.org/dc/terms/extent) | 713
+[dc:extent](http://purl.org/dc/terms/extent) | 863
 
 
 ### Columns
@@ -130,19 +131,19 @@ Name/Property | Datatype | Description
 [Note](http://cldf.clld.org/v1.0/terms.rdf#description) | `string` | 
 [Other](http://cldf.clld.org/v1.0/terms.rdf#comment) | `string` | 
 [Source](http://cldf.clld.org/v1.0/terms.rdf#source) | list of `string` (separated by `;`) | References [sources.bib::BibTeX-key](./sources.bib)
-`Category` | `string` | Variables are categorized as either `norms`, `ratings` or `relations`
-`Type` | `string` | Coarse datatype description for the variable
-`Method` | `string` | Keyword describing how values for the variable were determind
+`Category` | `string`<br>Valid choices:<br> `norms` `ratings` `relations` | Variables are categorized as either `norms`, `ratings` or `relations`
+`Type` | `string`<br>Valid choices:<br> `cardinality` `linguistic` `logarithmic` `magnitude` `mean` `normalized` `numeric` `object` `ordinality` `percentage` `semantic` `standardized` `sum` `tokens` | Coarse datatype description for the variable
+`Method` | `string`<br>Valid choices:<br> `concept lists` `corpus` `dictionaries` `meta` `other` `user` `users` | Keyword describing how values for the variable were determind
 `Result` | `string` | Keyword describing what a variable measures
 `Datatype` | `json` | CSVW Datatype description of the values for this variable.
 
-## <a name="table-norarecsv"></a>Table [norare.csv](./norare.csv)
+## <a name="table-norarecsv"></a>Table [norare.csv](./norare.csv.zip)
 
 A norm, rating or relation assigned to a word as measurement of a variable in a dataset aggregated by NoRaRe.
 
 property | value
  --- | ---
-[dc:extent](http://purl.org/dc/terms/extent) | 601437
+[dc:extent](http://purl.org/dc/terms/extent) | 677593
 
 
 ### Columns

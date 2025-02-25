@@ -3,6 +3,7 @@
 Name | Role
 --- | ---
 Annika Tjuka | author
+Mira  | author
 Robert Forkel | author
 Johann-Mattis List | author
 

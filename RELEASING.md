@@ -3,7 +3,7 @@
 - update `raw/norare-data` and `raw/concepticon-data` to the corresponding released versions
 - recreate the CLDF dataset:
   ```shell
-  cldfbench makecldf --with-cldfreadme cldfbench_norare.py --glottolog-version v4.6
+  cldfbench makecldf --with-cldfreadme cldfbench_norare.py --glottolog-version v5.1
   ```
 - check validity:
   ```shell

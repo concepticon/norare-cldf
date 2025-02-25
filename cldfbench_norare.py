@@ -263,6 +263,7 @@ Information on how to use the data is available at [doc](doc/).
                 return ml.label
             return ml
 
+        varids = set()
         for row in self.raw_dir.joinpath('norare-data').read_csv(
                 'norare.tsv', delimiter='\t', dicts=True):
             # Each row is a variable, related to a form via Language, e.g. LANGUAGE = 'en' means,
@@ -311,6 +312,10 @@ Information on how to use the data is available at [doc](doc/).
 
             # Add a Unit-Parameter
             upid = '{}-{}'.format(dsid, row['NAME'])
+            if upid in varids:
+                args.log.warning('skipping duplicate variable {}'.format(upid))
+                continue
+            varids.add(upid)
             colspec = column.asdict()
             if 'valueUrl' in colspec:
                 colspec['valueUrl'] = str(column.valueUrl).replace(row['NAME'], 'Value')
@@ -323,7 +328,7 @@ Information on how to use the data is available at [doc](doc/).
                 Datatype=colspec,
                 Category=row['NORARE'],
                 Method=row['RATING'],
-                Type=row['STRUCTURE'],
+                Type=row['STRUCTURE'].strip(),
                 Result=row['TYPE'],
                 Source=[row['SOURCE']] if row['SOURCE'] else [],
             ))
